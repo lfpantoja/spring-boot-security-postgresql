@@ -52,11 +52,10 @@ public class TipoPropietarioController {
         TipoPropietario tipoPropietarioAux = new TipoPropietario();
         tipoPropietarioAux.setDescripcion_tipo_propietario(tipoPropietario.getDescripcion_tipo_propietario());
 
-        TipoPropietario tipoPropietarioAdd = tipoPropietarioRepository.save(tipoPropietarioAux);
-
-        if(tipoPropietarioAdd != null){
+        try{
+            TipoPropietario tipoPropietarioAdd = tipoPropietarioRepository.save(tipoPropietarioAux);
             return ResponseEntity.status(HttpStatus.CREATED).body(tipoPropietarioAdd);
-        }else{
+        }catch(Exception ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -84,5 +83,4 @@ public class TipoPropietarioController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
-
 }
